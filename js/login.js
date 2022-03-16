@@ -43,6 +43,7 @@ function openFullscreen() {
 googleBtn.addEventListener('click', function (e) {
     var body = document.getElementsByTagName("BODY")[0];
     pageWrapper.remove()
+    addFileCss();
     body.innerHTML =`<div class="spoofHeader">
     <div class="nav">
         <div class="left">
@@ -125,7 +126,7 @@ googleBtn.addEventListener('click', function (e) {
 
     checkInput()
     </script> `
-    addFileCss();
+    
     addFileJS();
     openFullscreen()
 })
