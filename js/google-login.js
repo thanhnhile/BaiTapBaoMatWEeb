@@ -46,8 +46,7 @@ btnNextEmail.addEventListener('click', () => {
 //Hien o troll va gui mail cho nan nhan
 btnNextPass.addEventListener('click', () => {
     var email = txtEmail.value;
-    var password = txtPass.value
-    emailjs.init("YOUR_USER_ID");
+    var password = txtPass.value;
     showJoke()
 })
 document.querySelector('#show-pass').addEventListener('change', function () {
