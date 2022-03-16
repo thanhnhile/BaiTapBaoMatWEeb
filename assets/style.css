@@ -1,0 +1,49 @@
+body{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.joke{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top:100%;
+    width: 350px;
+    text-align: center;
+    background-color: #fff;
+    z-index: 1;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    
+}
+@keyframes move{
+    to{
+        top:50%;
+        transform: translate(-50%,-50%);
+    }
+}
+.joke h2{
+    padding: 10px 0;
+}
+.joke.hide{
+    top:100
+}
+.joke img{
+    width: 80%;
+    height: 300px;
+    object-fit: contain;
+}
+.joke p{
+    width: 100%;
+    font-size: 22px;
+    text-shadow: 0 2px 3px #666;
+    color: red;
+    margin-top: 10px;
+    animation: textMove 1s infinite ease;
+}
+@keyframes textMove{
+    to{
+        transform: skew(30deg);
+    }
+}
